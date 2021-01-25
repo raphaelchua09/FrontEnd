@@ -6,18 +6,18 @@
     <span class="menu-spacer"></span>
     <div class="navbar">
 
-
+      
       <a class="navbar" mat-button [routerLink]="'/accounts'"> </a>
-      <a mat-button [routerLink]="'/create-account'"> Add Record </a>
+      <a mat-button [routerLink]="'/patient'"> Add Record </a>
       <a mat-button [routerLink]="'/contacts'"> View Record </a>
       <a mat-button [routerLink]="'/create-contact'"> Activate Record </a>
       <a mat-button [routerLink]="'/activities'"> Deactivate Record </a>
-
+      
     </div>
   </mat-toolbar-row>
 
 </mat-toolbar>
-<div class="row">
+<!-- <div class="row">
   <div class="column">
     <div class="quote">
       <h1>Where your records</h1>
@@ -27,6 +27,6 @@
   </div>
   <div class="column">
     <img class="landing_image" src="../assets/landing_page.svg" alt="health care">
-
   </div>
-</div>
+</div> -->
+<router-outlet></router-outlet>

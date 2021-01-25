@@ -1,0 +1,91 @@
+<div>
+    <div class="submit-form">
+        <div class="form-group">
+          <label for="title">Last Name </label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastname"
+            required
+            name="lastname"
+          />
+        </div>
+
+        <div class="form-group">
+            <label for="title">First Name </label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstname"
+              required
+              name="firstname"
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="title">Middle Name </label>
+            <input
+              type="text"
+              class="form-control"
+              id="middlename"
+              required
+              name="middlename"
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="title">Address </label>
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              required
+              name="address"
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="title">Email </label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              required
+              name="email"
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="title">Contact Number </label>
+            <input
+              type="text"
+              class="form-control"
+              id="number"
+              required
+              name="number"
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="title">Birthdate </label>
+            <input
+              type="date"
+              class="form-control"
+              id="bdate"
+              required
+              name="bdate"
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="title">Gender </label>
+            <select id="title" name="Gender" class="form-control" required>
+                <option value="volvo">Male</option>
+                <option value="saab">Female</option>
+                <option value="fiat">Other</option>
+              </select>
+        </div>
+
+        <button (click)="savePatient()" class="btn btn-success">Submit</button>
+    </div>
+</div>
