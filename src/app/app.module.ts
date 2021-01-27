@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
+import { PatientService } from './../service/patient.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,7 +17,7 @@ import { ViewRecordComponent } from './main/view-record/view-record.component';
 import { ActivateRecordComponent } from './main/activate-record/activate-record.component';
 import { DeactivateRecordComponent } from './main/deactivate-record/deactivate-record.component';
 import { GenerateReportComponent } from './main/generate-report/generate-report.component';
-
+import {HttpClientModule} from '@angular/common/http';
 
 
 
@@ -32,6 +33,7 @@ import { GenerateReportComponent } from './main/generate-report/generate-report.
     GenerateReportComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
@@ -43,7 +45,7 @@ import { GenerateReportComponent } from './main/generate-report/generate-report.
     MatButtonModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [PatientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
