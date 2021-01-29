@@ -95,6 +95,8 @@ export class ViewRecordComponent implements OnInit {
               return p;
             })
             this.dataSource = new MatTableDataSource(this.activatedRecords);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
             this.isLoading = false;
           }
           );
@@ -107,6 +109,8 @@ export class ViewRecordComponent implements OnInit {
               return p;
             })
             this.dataSource = new MatTableDataSource(this.deactivatedRecords);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
             this.isLoading = false;
           }
           )
@@ -119,6 +123,8 @@ export class ViewRecordComponent implements OnInit {
               return p;
             })
             this.dataSource = new MatTableDataSource(this.allRecords);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
             this.isLoading = false;
           }
           )
@@ -126,8 +132,7 @@ export class ViewRecordComponent implements OnInit {
         default:
 
       }
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+    
 
 
 
@@ -145,6 +150,8 @@ export class ViewRecordComponent implements OnInit {
             return p;
           })
           this.dataSource = new MatTableDataSource(this.activatedRecords);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
           this.isLoading = false;
         }
         );
@@ -157,6 +164,8 @@ export class ViewRecordComponent implements OnInit {
             return p;
           })
           this.dataSource = new MatTableDataSource(this.deactivatedRecords);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
           this.isLoading = false;
         }
         )
@@ -169,6 +178,8 @@ export class ViewRecordComponent implements OnInit {
             return p;
           })
           this.dataSource = new MatTableDataSource(this.allRecords);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
           this.isLoading = false;
         }
         )
@@ -176,8 +187,7 @@ export class ViewRecordComponent implements OnInit {
       default:
 
     }
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+
   }
 
 }
