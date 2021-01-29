@@ -20,6 +20,8 @@ export class ViewIndividualRecordDialogComponent implements OnInit {
       lastName:[this.data.lastName, [Validators.required]],
       email:[this.data.email, [Validators.required]],
       contactNumber:[this.data.contactNumber, [Validators.required]],
+      address:[this.data.address, [Validators.required]],
+
       birthdate:[this.data.birthdate, [Validators.required]],
       gender:[this.data.gender, [Validators.required]]
     })
