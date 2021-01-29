@@ -20,16 +20,27 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+
+
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AddRecordComponent } from './main/add-record/add-record.component';
 import { ViewRecordComponent } from './main/view-record/view-record.component';
-import { GenerateReportComponent } from './main/generate-report/generate-report.component';
 
 import { ViewRecordService } from "../app/services/view-record.service";
-import { PatientService } from './../service/patient.service';
+import { PatientService } from './services/patient.service';
+import { GenerateReportDialogComponent } from './main/generate-report-dialog/generate-report-dialog.component';
+import { ExportRecordService } from './services/export-record.service';
 
 
 @NgModule({
@@ -39,7 +50,7 @@ import { PatientService } from './../service/patient.service';
     LandingPageComponent,
     AddRecordComponent,
     ViewRecordComponent,
-    GenerateReportComponent,
+    GenerateReportDialogComponent,
     ViewIndividualRecordDialogComponent
   ],
   imports: [
@@ -64,8 +75,18 @@ import { PatientService } from './../service/patient.service';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+
+    MatTabsModule,
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatSelectModule
+
   ],
-  providers: [ViewRecordService,PatientService],
+  providers: [ViewRecordService, PatientService, ExportRecordService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

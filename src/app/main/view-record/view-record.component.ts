@@ -7,6 +7,7 @@ import { Patient } from "../../models/Patient";
 import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewIndividualRecordDialogComponent } from './view-individual-record-dialog/view-individual-record-dialog.component';
+import { MatTable } from '@angular/material/table';
 
 export interface UserData {
   id: string;
@@ -24,20 +25,26 @@ export interface UserData {
 })
 export class ViewRecordComponent implements OnInit {
 
-  displayedColumns: string[] = ['patientId', 'firstName', 'email', 'contactNumber', 'birthdate', 'gender','address', 'status', 'actions'];
+  displayedColumns: string[] = ['patientId', 'firstName', 'email', 'contactNumber', 'birthdate', 'gender', 'address', 'status', 'actions'];
   dataSource: MatTableDataSource<Patient>;
 
   activatedRecords;
   deactivatedRecords;
+  allRecords;
+
   color: ThemePalette = 'accent';
   checked = false;
   disabled = false;
   isChecked = true;
+  isLoading = true;
+  value = "All";
+
 
   private patients: Patient[] = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatTable) table: MatTable<any>;
 
   constructor(private viewRecordService: ViewRecordService, public dialog: MatDialog) {
 
@@ -45,33 +52,22 @@ export class ViewRecordComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.viewRecordService.showActivatedPatientRecords().subscribe(p => {
 
 
-      this.activatedRecords = p.map(p => {
+    this.viewRecordService.showPatientRecords().subscribe(p => {
+      this.allRecords = p.map(p => {
         p['fullName'] = `${p.firstName} ${p.middleName} ${p.lastName}`;
         p['date'] = new Date(p['date']).toLocaleDateString('en-US');
         return p;
       })
-
-
-      this.dataSource = new MatTableDataSource(this.activatedRecords);
-
-
+      this.dataSource = new MatTableDataSource(this.allRecords);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.isLoading = false;
     }
     )
-    this.viewRecordService.showDeactivatedPatientRecords().subscribe(p => {
-      this.deactivatedRecords = p.map(p => {
-        p['fullName'] = `${p.firstName} ${p.middleName} ${p.lastName}`;
-        p['date'] = new Date(p['date']).toLocaleDateString('en-US');
-        return p;
-      })
-    }
-    )
-
   }
+
   ngAfterViewInit() {
 
   }
@@ -85,21 +81,65 @@ export class ViewRecordComponent implements OnInit {
     }
   }
 
-  toggleSourceData() {
 
-    if (!this.isChecked) {
-      this.dataSource = new MatTableDataSource(this.deactivatedRecords);
-    }
-    else {
-      this.dataSource = new MatTableDataSource(this.activatedRecords);
-    }
-    console.log(this.deactivatedRecords);
-  }
   openDialog(row) {
-    const dialogRef = this.dialog.open(ViewIndividualRecordDialogComponent,{data:row});
+    const dialogRef = this.dialog.open(ViewIndividualRecordDialogComponent, { data: row });
+    
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+      this.onValChange(this.value);
+    })
   }
+  onValChange(value) {
+    this.isLoading = true;
+    this.value = value;
+    switch (value) {
+      case 'Activated':
+        this.viewRecordService.showActivatedPatientRecords().subscribe(p => {
+          this.activatedRecords = p.map(p => {
+            p['fullName'] = `${p.firstName} ${p.middleName} ${p.lastName}`;
+            p['date'] = new Date(p['date']).toLocaleDateString('en-US');
+            return p;
+          })
+          this.dataSource = new MatTableDataSource(this.activatedRecords);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+          this.isLoading = false;
+        }
+        );
+        break;
+      case 'Deactivated':
+        this.viewRecordService.showDeactivatedPatientRecords().subscribe(p => {
+          this.deactivatedRecords = p.map(p => {
+            p['fullName'] = `${p.firstName} ${p.middleName} ${p.lastName}`;
+            p['date'] = new Date(p['date']).toLocaleDateString('en-US');
+            return p;
+          })
+          this.dataSource = new MatTableDataSource(this.deactivatedRecords);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+          this.isLoading = false;
+        }
+        )
+        break;
+      case 'All':
+        this.viewRecordService.showPatientRecords().subscribe(p => {
+          this.allRecords = p.map(p => {
+            p['fullName'] = `${p.firstName} ${p.middleName} ${p.lastName}`;
+            p['date'] = new Date(p['date']).toLocaleDateString('en-US');
+            return p;
+          })
+          this.dataSource = new MatTableDataSource(this.allRecords);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+          this.isLoading = false;
+        }
+        )
+        break;
+      default:
+
+    }
+
+  }
+
 }

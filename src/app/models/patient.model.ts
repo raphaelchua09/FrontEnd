@@ -6,6 +6,7 @@ export class Patient {
     address: string;
     contactNumber : string;
     birthdate:string;
+    birthdate:Date;
     gender:string;
     status:Number;
 }
