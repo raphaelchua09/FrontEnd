@@ -53,6 +53,7 @@ export class ViewRecordComponent implements OnInit {
   }
   ngOnInit(): void {
 
+
     this.viewRecordService.showPatientRecords().subscribe(p => {
       this.allRecords = p.map(p => {
         p['fullName'] = `${p.firstName} ${p.middleName} ${p.lastName}`;
