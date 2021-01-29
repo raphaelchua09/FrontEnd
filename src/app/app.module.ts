@@ -19,7 +19,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { PatientService } from './../service/patient.service';
+import { MatTabsModule } from '@angular/material/tabs';
+
 
 
 import { AppComponent } from './app.component';
@@ -30,7 +31,7 @@ import { ViewRecordComponent } from './main/view-record/view-record.component';
 import { GenerateReportComponent } from './main/generate-report/generate-report.component';
 
 import { ViewRecordService } from "../app/services/view-record.service";
-import { PatientService } from './../service/patient.service';
+import { PatientService } from './services/patient.service';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { PatientService } from './../service/patient.service';
     MatDialogModule,
     ReactiveFormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTabsModule
   ],
   providers: [ViewRecordService,PatientService],
   bootstrap: [AppComponent]

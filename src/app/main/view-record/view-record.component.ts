@@ -48,7 +48,8 @@ export class ViewRecordComponent implements OnInit {
     this.viewRecordService.showActivatedPatientRecords().subscribe(p => {
 
 
-      this.activatedRecords = p.map(p => {
+      this.activatedRecords = p.map(p => 
+      {
         p['fullName'] = `${p.firstName} ${p.middleName} ${p.lastName}`;
         p['date'] = new Date(p['date']).toLocaleDateString('en-US');
         return p;
