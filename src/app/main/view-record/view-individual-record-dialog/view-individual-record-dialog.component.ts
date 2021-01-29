@@ -2,8 +2,9 @@ import { Component, OnInit ,Inject} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators , FormArray, FormControl } from '@angular/forms';
 import { AddressService } from 'src/app/services/add-address.service';
-import { NewAddress } from 'src/model/address.model';
-import { Patient } from 'src/model/patient.model';
+import { NewAddress } from 'src/app/models/address.model';
+import { Patient } from 'src/app/models/patient.model';
+import {StatusService} from '../../../services/status.service';
 @Component({
   selector: 'app-view-individual-record-dialog',
   templateUrl: './view-individual-record-dialog.component.html',
@@ -13,13 +14,12 @@ export class ViewIndividualRecordDialogComponent implements OnInit {
   recordForm: FormGroup;
   isEdit=false;
   newAddress = new FormArray([]);
+  constructor(@Inject(MAT_DIALOG_DATA) public data,private formBuilder: FormBuilder,private statusService: StatusService,  private addressService:AddressService) { } 
 
   submitted = false;
   addressForm:FormGroup;
   private patient: Patient[] = [];
-  constructor(@Inject(MAT_DIALOG_DATA) public data,private formBuilder: FormBuilder, private addressService:AddressService) { 
-    
-  } 
+  
   
  
   ngOnInit(): void {
@@ -30,6 +30,8 @@ export class ViewIndividualRecordDialogComponent implements OnInit {
       lastName:[this.data.lastName, [Validators.required]],
       email:[this.data.email, [Validators.required]],
       contactNumber:[this.data.contactNumber, [Validators.required]],
+      address:[this.data.address, [Validators.required]],
+
       birthdate:[this.data.birthdate, [Validators.required]],
       gender:[this.data.gender, [Validators.required]],
 
@@ -84,10 +86,18 @@ export class ViewIndividualRecordDialogComponent implements OnInit {
  
   //Code here Swarti
   activateRecord(){
-
+    let body = {'status': 1};
+    this.statusService.updateStatus(body, this.data.patientId).subscribe(p=>{
+      console.log("asdasd")
+    });
   }
+  
   //Code here Swarti
   deactivateRecord(){
+    let body = {'status': 0};
+    this.statusService.updateStatus(body, this.data.patientId).subscribe(p=>{
+      console.log("asdasd")
+    });
 
   }
   //Code here Kevin

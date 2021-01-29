@@ -100,7 +100,19 @@
                     <button  (click)="submitAddress()" mat-flat-button color="accent">Submit</button>
                 </mat-tab>
 
+            <br>
 
+            <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Contact Number
+                </mat-label>
+                <input matInput formControlName="contactNumber" required>
+            </mat-form-field>
+
+            <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Address
+                </mat-label>
+                <input matInput formControlName="address" required>
+            </mat-form-field>
 
                
            
@@ -123,9 +135,8 @@
 <mat-dialog-actions align="end">
 
     <button mat-flat-button color="warn" mat-dialog-close>Close</button>
-    <button *ngIf="data.status==0" (click)="activateRecord()" mat-flat-button color="accent">Activate</button>
-    <button *ngIf="data.status==1" (click)="deactivateRecord()" mat-flat-button color="primary">Deactivate</button>
-    
+    <button *ngIf="data.status==0" (click)="activateRecord()" mat-dialog-close mat-flat-button color="accent">Activate</button>
+    <button *ngIf="data.status==1" (click)="deactivateRecord()" mat-dialog-close mat-flat-button color="primary">Deactivate</button>
 
     <button *ngIf="!isEdit&&data.status==1" mat-button (click)="editRecord()" >Edit Record</button>
 
