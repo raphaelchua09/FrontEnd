@@ -19,7 +19,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { PatientService } from './../service/patient.service';
 
 
 import { AppComponent } from './app.component';
@@ -64,7 +63,7 @@ import { PatientService } from './../service/patient.service';
     MatDialogModule,
     ReactiveFormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ],
   providers: [ViewRecordService,PatientService],
   bootstrap: [AppComponent]

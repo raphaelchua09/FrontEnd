@@ -3,7 +3,6 @@
     <div class="example-container">
         <div class="form-container">
             <form [formGroup]="recordForm" (submit)="submitRecord()">
-
                 <mat-form-field class="form-field" appearance="outline">
                     <mat-label> First Name
                     </mat-label>
@@ -19,6 +18,7 @@
                     </mat-label>
                     <input matInput formControlName="lastName" required>
                 </mat-form-field>
+               
                 <br>
                 <mat-form-field class="form-field" appearance="outline">
                     <mat-label> Email
@@ -40,9 +40,12 @@
                     </mat-label>
                     <input matInput formControlName="gender" required>
                 </mat-form-field>
-
-
-
+                <br>
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label> Address
+                    </mat-label>
+                    <input matInput formControlName="address" required>
+                </mat-form-field>
             </form>
         </div>
     </div>

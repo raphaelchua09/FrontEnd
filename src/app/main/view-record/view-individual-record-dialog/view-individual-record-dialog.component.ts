@@ -1,6 +1,7 @@
 import { Component, OnInit ,Inject} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @Component({
   selector: 'app-view-individual-record-dialog',
@@ -21,7 +22,8 @@ export class ViewIndividualRecordDialogComponent implements OnInit {
       email:[this.data.email, [Validators.required]],
       contactNumber:[this.data.contactNumber, [Validators.required]],
       birthdate:[this.data.birthdate, [Validators.required]],
-      gender:[this.data.gender, [Validators.required]]
+      gender:[this.data.gender, [Validators.required]],
+      address:[this.data.address, [Validators.required]]
     })
     this.recordForm.disable();
   }
